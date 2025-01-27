@@ -1,0 +1,39 @@
+body {
+    background-color: rgb(66 5 0);
+    padding-top: 150px;
+}
+
+.recipeBox {
+    position: relative;  /* Make this the positioning context for the lid */
+    width: 550px;       /* Match the width of the box */
+    margin: 0 auto;     /* Center the recipe box */
+}
+
+.box {
+    width: 550px; /* Set the desired width */
+    height: 405px; /* Set the desired height */
+    margin: 0 auto;
+    background-image: url('boxpicture.png'); /* Path to your image */
+    background-size: cover; /* Ensures the image covers the box */
+    background-position: center; /* Centers the image */
+}
+
+.lid {
+    position: relative;
+    width: 555px; /* Set the desired width */
+    height: 100px; /* Set the desired height */
+    margin: 0 auto;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.75);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.123), rgba(0, 0, 0, 0.123)), 
+                      url('lidimage.jpg'); /* Overlay + Image */
+    background-size: cover; /* Ensures the image covers the box */
+    background-position: center; /* Centers the image */
+    z-index: 1; /* Ensures the lid goes on top of the box not under it */
+    padding: 0 2 px; /* so it goes a little bit bigger than the box */
+}
+.recipeBox:hover .lid {
+    top: -100px;  /* Moves the lid up when hovering */
+    transform: rotateZ(10deg);
+    left: 10px;
+}
+
