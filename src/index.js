@@ -12,12 +12,12 @@ hamburger.addEventListener("click", () => {
 })
 
 window.addEventListener("resize", () => {
-    if (window.matchMedia("(max-width: 900px)").matches) {
+    if (window.matchMedia("(max-width: 700px)").matches) {
         closeMenu();
     }
 })
 
-if (window.matchMedia("(max-width: 900px)").matches) {
+if (window.matchMedia("(max-width: 700px)").matches) {
     closeMenu();
 }
 

@@ -3,46 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Index Page</title>
   </head>
-  <body>
-    <nav class="nav">
-      <a href="#" class="nav__hamburger">
-        <span class="nav__hamburger-line"></span>
-        <span class="nav__hamburger-line"></span>
-        <span class="nav__hamburger-line"></span>
-      </a>
-      <div class="nav__logo">
-        <img src="image/logo.png" alt="Site Logo" />
-      </div>
-      <div class="nav__menu">
-        <ul>
-          <li class="nav__menu-item"><a href="#home" class="nav__menu-link">Home</a></li>
-          <li class="nav__menu-item"><a href="#about" class="nav__menu-link">About</a></li>
-          <li class="nav__menu-item"><a href="#contact" class="nav__menu-link">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <body class="home-page">
+    <div id="navbar-placeholder"></div>
+
+    <script>
+      fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("navbar-placeholder").innerHTML = data;
+        });
+    </script>
     <section class="main-section">
       <div class="main-section__phrase main-section__phrase--left">
-        <h1>Lift the lid</h1>
+        <!-- <h1>Lift the lid</h1> -->
       </div>
       <div class="recipe-box">
         <div class="recipe-box__lid"></div>
         <div class="recipe-box__container"></div>
         <div class="recipe-box__divider">
-            <div class="recipe-box__divider-item recipe-box__divider-item--mains"> <img src="image/mainsimage.png" alt="Mains" usemap="#mainsdivider"></div>
-
-            <map name="mainsdivider">
-              <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
-            </map>
-          <div class="recipe-box__divider-item recipe-box__divider-item--sides"></div>
-          <div class="recipe-box__divider-item recipe-box__divider-item--post"></div>
-          <div class="recipe-box__divider-item recipe-box__divider-item--bakes"></div>
+          <div class="recipe-box__divider-item recipe-box__divider-item--mains">
+            <img src="image/mainsimage.png" alt="Mains" usemap="#mainsdivider" />
+          </div>
+          <div class="recipe-box__divider-item recipe-box__divider-item--sides">
+            <img src="image/sidesimage.png" alt="Sides" usemap="#sidesdivider" />
+          </div>
+          <div class="recipe-box__divider-item recipe-box__divider-item--post">
+            <img src="image/postimage.png" alt="Post" usemap="#postdividers" />
+          </div>
+          <div class="recipe-box__divider-item recipe-box__divider-item--bakes">
+            <img src="image/bakesimage.png" alt="bakes" usemap="#bakesdividers" />
+          </div>
         </div>
+        <map name="mainsdivider">
+          <area shape="rect" coords="0,0,120,50" alt="mainsmap" href="mains.html" />
+        </map>
+        <map name="sidesdivider">
+          <area shape="rect" coords="120,0,250,50" alt="mainsmap" href="sides.html" />
+        </map>
       </div>
       <div class="main-section__phrase main-section__phrase--right">
-        <h1>And step into Mama's kitchen</h1>
+        <!-- <h1>And step into Mama's kitchen</h1> -->
       </div>
     </section>
   </body>
