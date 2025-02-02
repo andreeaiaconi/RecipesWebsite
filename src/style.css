@@ -1,149 +1,248 @@
+/* ========== GLOBAL STYLES ========== */
 body {
-    background: radial-gradient(circle, #ffffff, #8cb1d9);
-    margin: 0;
-    height: 100vh; /* When you specify height: 100vh, the body (and thus the gradient)
+  background: radial-gradient(circle, #ffffff, #8cb1d9);
+  margin: 0;
+  height: 100vh; /* When you specify height: 100vh, the body (and thus the gradient)
      extends to fill the entire viewport height, giving you the full circular  */
 }
+
+/* ========== NAVIGATION STYLES ========== */
 .nav {
-    display: flex;
-    justify-content:space-between;
-    margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
 }
-.nav_logo img {
-    position: absolute;
-    width: 300px;
-    /* Add these properties for better vertical alignment */
-    display: block;
-    
-    align-items: center;
-    filter:drop-shadow(0px 0px 2px rgb(184, 193, 202) )
+.nav__logo img {
+  position: fixed;
+  width: 300px;
+  /* Add these properties for better vertical alignment */
+  display: block;
+  align-items: center;
+  filter: drop-shadow(0px 0px 2px rgb(184, 193, 202));
 }
-.nav_menu ul {
-    margin: 10px 60px;
-    padding: 0;
-    font-size: medium;
-    font-family: cursive;
-    display: flex;
+.nav__menu ul{
+  position: relative; /*new*/
+  right: 60px; /*new*/
+  margin: 10px; /*new*/
+  /* margin: 10px 60px; */
+  padding: 0;
+  font-size: 22px;
+  font-family: "Snell Roundhand", cursive;
+  display: flex;
+  
 }
-.nav_menu ul li {
-    list-style: none; /* to remove bulletpoints*/
+.nav__menu-item {
+  list-style: none; /* to remove bulletpoints*/
 }
 /*  targeting the link element */
-.nav_menu ul li a {
-    text-decoration: none; /* to remove the underlining*/
-    color: #ffffff;
-    padding: 1rem;
-    display: block; /* takes up all the width given to it*/
+.nav__menu-link {
+  text-decoration: none; /* to remove the underlining*/
+  color: #ffffff;
+  padding: 1rem;
+  display: block; /* takes up all the width given to it*/
 }
 
-.recipeBox {
-    position: relative;  /* Make this the positioning context for the lid */
-    width: 550px;       /* Match the width of the box */
-    margin: 150px 200px 400px 450px;
-    align-items: center;
-
+.nav__menu-link:hover {
+  background-color: rgba(135, 139, 124, 0.2);
 }
-.recipeBox:hover .lid {
-    top: -100px;  /* Moves the lid up when hovering */
-    transform: rotateZ(10deg);
-    left: 10px;
-}
-.lid {
-    position: relative;
-    width: 555px; /* Set the desired width */
-    height: 100px; /* Set the desired height */
-    box-shadow: 0px 2px 8px rgba(62, 62, 62, 0.5);
-    background-image: linear-gradient(rgba(154, 180, 199, 0.05), rgba(112, 148, 173, 0.05)), 
-                      url('/src/image/lidimage3.jpeg'); /* Overlay + Image */
-    background-size: cover; /* Ensures the image covers the box */
-    padding: 0 2 px; /* so it goes a little bit bigger than the box */
-    z-index: 6; /* Ensures the lid goes on top of the box not under it */
+.nav__hamburger {
+  width: 1.875rem;
+  height: 1.313rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
-.box {
+.nav__hamburger-line {
+  height: 0.188rem;
+  width: 100%;
+  background-color: white;
+  border-radius: 0.7;
+  transition: all ease-in-out 0.2s;
+}
+
+@media screen and (max-width: 900px) {
+  .nav__hamburger {
+    display: flex;
+  }
+  .nav__menu {
     position: absolute;
-    width: 550px; /* Set the desired width */
-    height: 405px; /* Set the desired height */
-    margin: 0 auto;
-    background-image: url('/src/image/recipebox3.png'); /* Path to your image */
-    background-size: cover; /* Ensures the image covers the box */
-    background-position: center; /* Centers the image */
-    z-index: 5;
-    box-shadow: 4px 4px 8px rgba(125, 143, 146, 0.5);
-}
-.boxDivider {
-    display: grid;
-    position: absolute; /* Ensure overlapping works */
-    width: 97%;
-    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(135, 139, 124, 0.2);
+    top: -16rem; /* this makes the links be up above the page so when 
+    button is clicked they come down and are visible again */
+    width: 100%;
+    transition: all ease-in-out 0.4s;
+  }
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav__menu ul{
+    flex-direction: column;
+    width: 100%;
+    padding: 3rem 0 0.6rem; /* top, right&left, bottom */
+  }
+  .nav__menu-link {
+    text-align: center;
+  }
+  .nav__menu {
+    z-index: -1; /* so the index goes under the logo and hamburger */ 
+  }
+  .nav__menu.active {
     top: 0;
-    left: 0;
-    margin-left: 4px;
-    grid-template-columns: repeat(12, 1fr);
-    
+  }
+  .nav__hamburger.active :nth-child(1) {
+    transform: rotate(45deg) translate(0.45rem, 0.1875rem); /* Fixed: added comma */
+  }
 
+  .nav__hamburger.active :nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav__hamburger.active :nth-child(3) {
+    transform: rotate(-45deg) translate(0.45rem, -0.1875rem); /* Fixed: added comma */
+  }
 }
-.mainsDivider {
-    position:relative;
-    background-image: url(/src/image/mainsimage.png);
-    background-size: cover;
-    width: 100%;
-    height: 400px; /* Adjust as needed */
+
+/* ========== MAIN SECTION STYLES ========== */
+.main-section {
+  grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0; /* 100px of padding to the top and bottom, but 0px to the left and right.*/
+}
+
+.main-section__phrase {
+  font-size: 30px;
+  color: #556b8b;
+  font-family: "Snell Roundhand", cursive;
+  font-weight: 50;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  /*    additionally, given the lid taking up space, u can add some padding top */
+}
+
+.main-section__phrase--left {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+/* ========== RECIPE BOX STYLES ========== */
+.recipe-box {
+  position: relative; /* Make this the positioning context for the lid */
+}
+
+.recipe-box__lid {
+  position: relative;
+  width: 555px; /* Set the desired width */
+  height: 100px; /* Set the desired height */
+  box-shadow: 0px 2px 8px rgba(62, 62, 62, 0.5);
+  background-image: linear-gradient(rgba(154, 180, 199, 0.05), rgba(112, 148, 173, 0.05)),
+    url("/src/image/lidimage3.jpeg"); /* Overlay + Image */
+  background-size: cover; /* Ensures the image covers the box */
+  padding: 0 2 px; /* so it goes a little bit bigger than the box */
+  z-index: 6; /* Ensures the lid goes on top of the box not under it */
+}
+.recipe-box:hover .recipe-box__lid {
+  top: -200px; /* Moves the lid up when hovering */
+  transform: rotateZ(10deg);
+  left: 10px;
+}
+.recipe-box__container {
+  position: absolute;
+  width: 550px; /* Set the desired width */
+  height: 405px; /* Set the desired height */
+  background-image: url("/src/image/recipebox3.png"); /* Path to your image */
+  background-size: cover; /* Ensures the image covers the box */
+  background-position: center; /* Centers the image */
+  z-index: 5;
+  box-shadow: 4px 4px 8px rgba(125, 143, 146, 0.5);
+}
+.recipe-box__divider {
+  display: grid;
+  position: absolute; /* Ensure overlapping works */
+  width: 97%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin-left: 4px;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/* ========== DIVIDER STYLES ========== */
+.recipe-box__divider-item--mains {
+  position: relative;
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin-top: 30px; /* Moves it 20px lower */
+  z-index: 4; /* i tried 0 but it didnt send it all the way back */
+}
+
+.recipe-box__divider-item--mains img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: drop-shadow(0px 0px 2px rgb(127, 128, 129));
+}
+.recipe-box__divider-link {
+    display: block;
     grid-column: 1 / -1;
     grid-row: 1;
-    margin-top: 30px; /* Moves it 20px lower */
-    z-index: 4; /* i tried 0 but it didnt send it all the way back */
-    filter:drop-shadow(0px 0px 2px rgb(127, 128, 129) )
-
-}
-.mainsDivider:hover {
-    top: -50px;  /* Moves the divider up when hovering */
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.sidesDivider {
-    position:relative;
-    background-image: url(/src/image/sidesimage.png);
-    background-size: cover;
-    width: 100%;
-    height: 100px; /* Adjust as needed */
-    grid-column: 1 / -1;
-    grid-row: 1;
-    margin-top: 30px; /* Moves it 20px lower */
-    z-index: 3;
-    filter:drop-shadow(0px 0px 2px rgb(127, 128, 129) )
+.recipe-box__divider-item--sides {
+  position: relative;
+  background-image: url(/src/image/sidesimage.png);
+  background-size: cover;
+  width: 100%;
+  height: 100px; /* Adjust as needed */
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin-top: 30px; /* Moves it 20px lower */
+  z-index: 3;
+  filter: drop-shadow(0px 0px 2px rgb(127, 128, 129));
 }
-.sidesDivider:hover {
-    top: -50px;  /* Moves the divider up when hovering */
-}
-
-.postDivider {
-    position:relative;
-    background-image: url(/src/image/postimage.png);
-    background-size: cover;
-    width: 100%;
-    height: 100px; /* Adjust as needed */
-    grid-column: 1 / -1;
-    grid-row: 1;
-    margin-top: 30px; /* Moves it 20px lower */
-    z-index: 2;
-    filter:drop-shadow(0px 0px 2px rgb(127, 128, 129) )
-}
-.postDivider:hover {
-    top: -50px;  /* Moves the lid up when hovering */
-}
-.bakesDivider {
-    position:relative;
-    background-image: url(/src/image/bakesimage.png);
-    background-size: cover;
-    width: 100%;
-    height: 100px; /* Adjust as needed */
-    grid-column: 1 / -1;
-    grid-row: 1;
-    margin-top: 30px; /* Moves it 20px lower */
-    z-index: 1;
-    filter:drop-shadow(0px 0px 2px rgb(127, 128, 129) )
-} 
-.bakesDivider:hover {
-    top: -50px;  /* Moves the lid up when hovering */
+.recipe-box__divider-item--sides:hover {
+  top: -50px; /* Moves the divider up when hovering */
 }
 
+.recipe-box__divider-item--post {
+  position: relative;
+  background-image: url(/src/image/postimage.png);
+  background-size: cover;
+  width: 100%;
+  height: 100px; /* Adjust as needed */
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin-top: 30px; /* Moves it 20px lower */
+  z-index: 2;
+  filter: drop-shadow(0px 0px 2px rgb(127, 128, 129));
+}
+.recipe-box__divider-item--post:hover {
+  top: -50px; /* Moves the lid up when hovering */
+}
+.recipe-box__divider-item--bakes {
+  position: relative;
+  background-image: url(/src/image/bakesimage.png);
+  background-size: cover;
+  width: 100%;
+  height: 100px; /* Adjust as needed */
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin-top: 30px; /* Moves it 20px lower */
+  z-index: 1;
+  filter: drop-shadow(0px 0px 2px rgb(127, 128, 129));
+}
+.recipe-box__divider-item--bakes:hover {
+  top: -50px; /* Moves the lid up when hovering */
+}
