@@ -7,14 +7,15 @@
   </head>
   <body class="home-page">
     <div id="navbar-placeholder"></div>
-
-    <script>
+    <header class="index-page__header">
+      <script>
       fetch("navbar.html")
         .then(response => response.text())
         .then(data => {
           document.getElementById("navbar-placeholder").innerHTML = data;
         });
     </script>
+    </header>
     <section class="main-section">
       <div class="main-section__phrase main-section__phrase--left">
         <!-- <h1>Lift the lid</h1> -->

@@ -1,10 +1,18 @@
+/* ========== GLOBAL VARIABLES ========== */
+/* defining global variables with --custom-properties */
+:root {
+  --search-height: 100px;
+  --dark-color: #a1b29e; /* Defining my desired color to use later */
+  --header-height: 100px;
+  --border-color: rgb(145, 104, 130);
+}
 /* ========== GLOBAL STYLES ========== */
 /* CSS reset that ensures consistency across different browsers */
- /* Applies the styles to all elements on the page */
+/* Applies the styles to all elements on the page */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .home-page {
   background: radial-gradient(circle, #ffffff, #8cb1d9);
@@ -13,9 +21,15 @@
      extends to fill the entire viewport height, giving you the full circular  */
 }
 .mains-page {
-  background: radial-gradient(circle, #ffffff, #dcaad8);
+  background: white;
   margin: 0 140px;
   height: 100vh;
+}
+
+.index-page__header {
+  height: 1px;
+  background: white;
+  border-radius: 7px;
 }
 
 /* ========== NAVIGATION STYLES ========== */
@@ -25,24 +39,24 @@
   margin: 20px;
 }
 .nav__logo img {
-  position: fixed;
+  position: absolute;
   width: 300px;
   /* Add these properties for better vertical alignment */
   display: block;
   align-items: center;
   filter: drop-shadow(0px 0px 2px rgb(184, 193, 202));
 }
-.nav__menu ul{
+.nav__menu ul {
   position: relative; /*new*/
   right: 60px; /*new*/
   margin: 10px; /*new*/
   /* margin: 10px 60px; */
-  padding: 0;
+  padding-top: 15px;
   font-size: 22px;
   /* font-family: "Snell Roundhand", cursive; */
-  font-family: "Prata", serif;;
+  font-family: "Prata", serif;
+  font-style: italic;
   display: flex;
-  
 }
 .nav__menu-item {
   list-style: none; /* to remove bulletpoints*/
@@ -84,7 +98,7 @@
   .nav__menu {
     position: absolute;
     display: flex;
-    align-items:center;
+    align-items: center;
     background-color: rgba(135, 139, 124, 0.2);
     top: -16rem; /* this makes the links be up above the page so when 
     button is clicked they come down and are visible again */
@@ -95,7 +109,7 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  .nav__menu ul{
+  .nav__menu ul {
     flex-direction: column;
     width: 100%;
     padding: 3rem 0 0.6rem; /* top, right&left, bottom */
@@ -105,13 +119,13 @@
     padding-right: 150px;
   }
   .nav__menu {
-    z-index: -1; /* so the index goes under the logo and hamburger */ 
+    z-index: -1; /* so the index goes under the logo and hamburger */
   }
   .nav__menu.active {
     top: 0;
   }
   .nav__hamburger.active :nth-child(1) {
-    transform: rotate(45deg) translate(0.45rem, 0.1875rem); /* Fixed: added comma */
+    transform: rotate(45deg) translate(0.45rem, 0.1875rem); 
   }
 
   .nav__hamburger.active :nth-child(2) {
@@ -119,7 +133,7 @@
   }
 
   .nav__hamburger.active :nth-child(3) {
-    transform: rotate(-45deg) translate(0.45rem, -0.1875rem); /* Fixed: added comma */
+    transform: rotate(-45deg) translate(0.45rem, -0.1875rem); 
   }
 }
 
@@ -152,6 +166,7 @@
 
 /* ========== RECIPE BOX STYLES ========== */
 .recipe-box {
+  margin-top: 100px;
   position: relative; /* Make this the positioning context for the lid */
 }
 
@@ -167,7 +182,7 @@
   z-index: 7; /* Ensures the lid goes on top of the box not under it */
 }
 .recipe-box:hover .recipe-box__lid {
-  top: -200px; /* Moves the lid up when hovering */
+  top: -140px; /* Moves the lid up when hovering */
   transform: rotateZ(10deg);
   left: 10px;
 }
@@ -197,13 +212,12 @@
   position: absolute;
   grid-column: 1 / -1;
   grid-row: 1;
-  margin-top: 40px; 
+  margin-top: 30px;
   z-index: 4; /* i tried 0 but it didnt send it all the way back */
 }
 .recipe-box__divider-item--mains img {
   width: 100%;
   height: 100%;
-  
   filter: drop-shadow(0px 0px 2px rgb(127, 128, 129));
 }
 
@@ -223,16 +237,16 @@ area {
   cursor: pointer;
 }
 .recipe-box__divider-link {
-    display: block;
-    grid-column: 1 / -1;
-    grid-row: 1;
-    text-decoration: none;
+  display: block;
+  grid-column: 1 / -1;
+  grid-row: 1;
+  text-decoration: none;
 }
 
 .recipe-box__divider map,
 .recipe-box__divider area {
-    position: relative;
-    z-index: 5; /* Higher than any of your divider items */
+  position: relative;
+  z-index: 5; /* Higher than any of your divider items */
 }
 
 .recipe-box__divider-item--post {
@@ -261,33 +275,119 @@ area {
 }
 
 /* ========== MAINS PAGE STYLES ========== */
+header {
+  height: var(--header-height);
+  background: var(--dark-color);
+  border-radius: 7px;
+}
 h1 {
   font-family: "Prata", serif;
-  padding-top: 30px;
+  font-style: italic;
+  padding: 20px 0px;
   text-align: center;
-  color: white;
-  font-weight: 200px;
-  text-shadow: #000000;
-  letter-spacing: .6px;
+  color: var(--dark-color);
+  letter-spacing: 0.6px;
   font-weight: 400;
   font-size: 50px;
-  
+  filter: drop-shadow(0px 0px 2px rgb(255, 230, 252));
 }
-
 .hero {
-    width: 100%;
-    height: 600px; /* Adjust height as needed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  width: 100%;
+  height: 600px; /* Adjust height as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-
 .hero img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image fills the box without distortion */
-    
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the box without distortion */
+  padding-bottom: 20px;
+  border-radius: 7px;
 }
+.container {
+  text-align: center;
+  height: calc(100vh - var(--header-height));
+}
+.search input[type="text"] {
+  padding: 8px 10px;
+  line-height: 1.5;
+  font-size: 1rem;
+  border: none;
+  border-left: 1px solid var(--dark-color);
+  border-bottom: 1px solid transparent;
+  outline: none;
+  transition: all 200ms ease-in-out;
+  width: 20%;
+  color: #000000;
+  background-color: rgb(250, 245, 249);
+}
+.search {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0px;
+}
+/* input[type="text"] selects <input> elements of type "text" inside the .search element */
+/* :focus applies styles when the user clicks on or tabs into the text input field). */
+.search input[type="text"]:focus {
+  border-left-color: transparent;
+  border-bottom-color: var(--dark-color);
+  width: 21%;
+}
+.btn {
+  background-color: rgb(250, 245, 249);
+  padding: 8px 10px;
+  border-radius: 5px;
+  user-select: none;
+  font-size: 1rem;
+  border: 1px solid var(--dark-color);
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--dark-color);
+  border-color: #3d453c;
+}
+#recipe-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.recipe {
+  height: 300px;
+  width: 300px;
+  padding: 4px;
+  margin: 20px 40px;
+  font-family: "Prata", serif;
+  font-style: italic;
+  color: rgb(21, 22, 22);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /*If transition 
+  were in .recipe:hover, it would only apply when hovering starts, 
+  but it wouldn't smoothly return to the original size when the mouse leaves.*/
+}
+.recipe:hover {
+  box-shadow: 0px 0px 15px 2px rgba(178, 124, 122, 0.3);
+  transform: scale(1.05); /* Increases size by 5% */
+}
+.recipe-image {
+  width: 100%;
+  height: 250px;
 
-
+}
+.recipe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.recipe-title {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  font-size: 1rem;
+}
