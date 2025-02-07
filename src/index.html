@@ -6,15 +6,15 @@
     <title>Index Page</title>
   </head>
   <body class="home-page">
-    <div id="navbar-placeholder"></div>
     <header class="index-page__header">
+      <div id="navbar-placeholder"></div>
       <script>
-      fetch("navbar.html")
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("navbar-placeholder").innerHTML = data;
-        });
-    </script>
+        fetch("navbar.html")
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          });
+      </script>
     </header>
     <section class="main-section">
       <div class="main-section__phrase main-section__phrase--left">
@@ -28,20 +28,20 @@
             <img src="image/mainsimage.png" alt="Mains" usemap="#mainsdivider" />
           </div>
           <div class="recipe-box__divider-item recipe-box__divider-item--sides">
-            <img src="image/sidesimage.png" alt="Sides" usemap="#sidesdivider" />
+            <img src="image/sidesimage.png" alt="Sides" />
           </div>
           <div class="recipe-box__divider-item recipe-box__divider-item--post">
-            <img src="image/postimage.png" alt="Post" usemap="#postdividers" />
+            <img src="image/postimage.png" alt="Post" />
           </div>
           <div class="recipe-box__divider-item recipe-box__divider-item--bakes">
-            <img src="image/bakesimage.png" alt="bakes" usemap="#bakesdividers" />
+            <img src="image/bakesimage.png" alt="bakes" />
           </div>
         </div>
         <map name="mainsdivider">
-          <area shape="rect" coords="0,0,120,50" alt="mainsmap" href="mains.html" />
-        </map>
-        <map name="sidesdivider">
-          <area shape="rect" coords="120,0,250,50" alt="mainsmap" href="sides.html" />
+          <area shape="rect" coords="0,0,120,50" alt="Mains Map" href="mains.html" />
+          <area shape="rect" coords="120,0,250,50" alt="Sides Map" href="sides.html" />
+          <area shape="rect" coords="250,0,370,50" alt="Post Map" href="post.html" />
+          <area shape="rect" coords="370,0,490,50" alt="Bakes Map" href="bakes.html" />
         </map>
       </div>
       <div class="main-section__phrase main-section__phrase--right">

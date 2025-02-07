@@ -13,7 +13,16 @@ module.exports = env => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: "./src/index.html"
+        template: "./src/index.html",
+        filename: "index.html"
+      }),
+      new HtmlWebpackPlugin({
+        template: "./src/bakes.html",
+        filename: "bakes.html"
+      }),
+      new HtmlWebpackPlugin({
+        template: "./src/mains.html",
+        filename: "mains.html"
       })
     ],
     module: {
