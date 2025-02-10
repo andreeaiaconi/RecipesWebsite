@@ -13,39 +13,65 @@
           .then(response => response.text())
           .then(data => {
             document.getElementById("navbar-placeholder").innerHTML = data;
+
+            // Create a MutationObserver to watch for changes
+            const observer = new MutationObserver((mutations, obs) => {
+              const logo = document.getElementById("navLogo");
+              if (logo) {
+                console.log("Found logo, changing src");
+                logo.src = "image/logoblue.png";
+
+                // Add color change for menu items
+                const menuItems = document.querySelectorAll(".nav__menu-item a");
+                menuItems.forEach(item => {
+                  item.style.color = "#999bb8";
+                });
+
+                obs.disconnect(); // Stop observing
+              }
+            });
+
+            // Start observing the navbar placeholder
+            observer.observe(document.getElementById("navbar-placeholder"), {
+              childList: true,
+              subtree: true
+            });
           });
       </script>
     </header>
     <section class="main-section">
-      <div class="main-section__phrase main-section__phrase--left">
-        <!-- <h1>Lift the lid</h1> -->
+      <div>
+        <!-- <h1 class="main-section__phrase main-section__phrase--left">Lift the lid</h1> -->
       </div>
       <div class="recipe-box">
-        <div class="recipe-box__lid"></div>
+        <div class="recipe-box__lid">
+          <img src="image/lidimage2.jpeg" alt="Lid image">
+          <div class="overlay-text">Lift the lid and step inside Ina's kitchen</div>
+        </div>
         <div class="recipe-box__container"></div>
         <div class="recipe-box__divider">
+          <div class="recipe-box__divider-item recipe-box__divider-item--bakes">
+            <img src="image/dividersimages/bakesimage.png" alt="bakes" usemap="#bakesdivider"/>
+          </div>
           <div class="recipe-box__divider-item recipe-box__divider-item--mains">
-            <img src="image/mainsimage.png" alt="Mains" usemap="#mainsdivider" />
+            <img src="image/dividersimages/mainsimage.png" alt="Mains"/>
           </div>
           <div class="recipe-box__divider-item recipe-box__divider-item--sides">
-            <img src="image/sidesimage.png" alt="Sides" />
+            <img src="image/dividersimages/sidesimage.png" alt="Sides" />
           </div>
-          <div class="recipe-box__divider-item recipe-box__divider-item--post">
-            <img src="image/postimage.png" alt="Post" />
-          </div>
-          <div class="recipe-box__divider-item recipe-box__divider-item--bakes">
-            <img src="image/bakesimage.png" alt="bakes" />
+          <div class="recipe-box__divider-item recipe-box__divider-item--vegan">
+            <img src="image/dividersimages/veganimage.png" alt="Post" />
           </div>
         </div>
-        <map name="mainsdivider">
-          <area shape="rect" coords="0,0,120,50" alt="Mains Map" href="mains.html" />
-          <area shape="rect" coords="120,0,250,50" alt="Sides Map" href="sides.html" />
-          <area shape="rect" coords="250,0,370,50" alt="Post Map" href="post.html" />
-          <area shape="rect" coords="370,0,490,50" alt="Bakes Map" href="bakes.html" />
+        <map name="bakesdivider">
+          <area shape="rect" coords="0,0,120,50" alt="Bakes Map" href="bakes.html" />
+          <area shape="rect" coords="120,0,250,50" alt="Mains Map" href="mains.html" />
+          <area shape="rect" coords="250,0,370,50" alt="Sides Map" href="sides.html" />
+          <area shape="rect" coords="370,0,490,50" alt="Vegan Map" href="vegan.html" />
         </map>
       </div>
-      <div class="main-section__phrase main-section__phrase--right">
-        <!-- <h1>And step into Mama's kitchen</h1> -->
+      <div>
+        <!-- <h1 class="main-section__phrase main-section__phrase--right">And step into Ina's kitchen</h1> -->
       </div>
     </section>
   </body>
