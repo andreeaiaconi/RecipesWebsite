@@ -7,54 +7,40 @@
   </head>
   <body class="home-page">
     <header class="index-page__header">
-      <div id="navbar-placeholder"></div>
-      <script>
-        fetch("navbar.html")
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById("navbar-placeholder").innerHTML = data;
-
-            // Create a MutationObserver to watch for changes
-            const observer = new MutationObserver((mutations, obs) => {
-              const logo = document.getElementById("navLogo");
-              if (logo) {
-                console.log("Found logo, changing src");
-                logo.src = "image/logoblue.png";
-
-                // Add color change for menu items
-                const menuItems = document.querySelectorAll(".nav__menu-item a");
-                menuItems.forEach(item => {
-                  item.style.color = "#999bb8";
-                });
-
-                obs.disconnect(); // Stop observing
-              }
-            });
-
-            // Start observing the navbar placeholder
-            observer.observe(document.getElementById("navbar-placeholder"), {
-              childList: true,
-              subtree: true
-            });
-          });
-      </script>
+      <nav class="index-page__nav">
+        <a href="#" class="index-page__nav-hamburger">
+          <span class="index-page_nav__hamburger-line"></span>
+          <span class="index-page_nav__hamburger-line"></span>
+          <span class="index-page_nav__hamburger-line"></span>
+        </a>
+        <a href="index.html" class="nav__logo">
+          <img id="navLogo" src="image/logoblue.png" alt="Site Logo" />
+        </a>
+        <div class="index-page__nav-menu">
+          <ul>
+            <li class="index-page__nav__menu-item"><a href="index.html" class="index-page__nav__menu-link">Home</a></li>
+            <li class="index-page__nav__menu-item"><a href="#about" class="index-page__nav__menu-link">About</a></li>
+            <li class="index-page__nav__menu-item">
+              <a href="#contact" class="index-page__nav__menu-link">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
     <section class="main-section">
-      <div>
-        <!-- <h1 class="main-section__phrase main-section__phrase--left">Lift the lid</h1> -->
-      </div>
+      <div></div>
       <div class="recipe-box">
         <div class="recipe-box__lid">
-          <img src="image/lidimage2.jpeg" alt="Lid image">
+          <img src="image/lidimage2.jpeg" alt="Lid image" />
           <div class="overlay-text">Lift the lid and step inside Ina's kitchen</div>
         </div>
         <div class="recipe-box__container"></div>
         <div class="recipe-box__divider">
           <div class="recipe-box__divider-item recipe-box__divider-item--bakes">
-            <img src="image/dividersimages/bakesimage.png" alt="bakes" usemap="#bakesdivider"/>
+            <img src="image/dividersimages/bakesimage.png" alt="bakes" usemap="#bakesdivider" />
           </div>
           <div class="recipe-box__divider-item recipe-box__divider-item--mains">
-            <img src="image/dividersimages/mainsimage.png" alt="Mains"/>
+            <img src="image/dividersimages/mainsimage.png" alt="Mains" />
           </div>
           <div class="recipe-box__divider-item recipe-box__divider-item--sides">
             <img src="image/dividersimages/sidesimage.png" alt="Sides" />
@@ -64,15 +50,61 @@
           </div>
         </div>
         <map name="bakesdivider">
-          <area shape="rect" coords="0,0,120,50" alt="Bakes Map" href="bakes.html" />
-          <area shape="rect" coords="120,0,250,50" alt="Mains Map" href="mains.html" />
-          <area shape="rect" coords="250,0,370,50" alt="Sides Map" href="sides.html" />
-          <area shape="rect" coords="370,0,490,50" alt="Vegan Map" href="vegan.html" />
+          <area shape="rect" coords="0,0,131.5,50" alt="Bakes Map" href="bakes.html" />
+          <area shape="rect" coords="131.5,0,263,50" alt="Mains Map" href="mains.html" />
+          <area shape="rect" coords="263,0,394.5,50" alt="Sides Map" href="sides.html" />
+          <area shape="rect" coords="394.5,0,524,50" alt="Vegan Map" href="vegan.html" />
         </map>
       </div>
-      <div>
-        <!-- <h1 class="main-section__phrase main-section__phrase--right">And step into Ina's kitchen</h1> -->
-      </div>
+      <div></div>
     </section>
+
+    <!-- Add the script here, right before closing body tag -->
+    <script>
+      // Get the container and map elements
+      const container = document.querySelector(".recipe-box__divider");
+      const imageMap = document.querySelector('map[name="bakesdivider"]');
+      const areas = imageMap.getElementsByTagName("area");
+
+      // Function to update coordinates
+      function updateMapCoordinates() {
+        // Get current container dimensions
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
+
+        // Calculate section widths (divide total width by 4 for each section)
+        const sectionWidth = containerWidth / 4;
+
+        // Update coordinates for each area
+        // Format: x1,y1,x2,y2
+        const newCoordinates = [
+          `0,0,${sectionWidth},${containerHeight}`, // Bakes
+          `${sectionWidth},0,${sectionWidth * 2},${containerHeight}`, // Mains
+          `${sectionWidth * 2},0,${sectionWidth * 3},${containerHeight}`, // Sides
+          `${sectionWidth * 3},0,${containerWidth},${containerHeight}` // Vegan
+        ];
+
+        // Update each area's coordinates
+        for (let i = 0; i < areas.length; i++) {
+          areas[i].coords = newCoordinates[i];
+        }
+        
+      }
+
+      // Create a ResizeObserver to watch the container
+      const resizeObserver = new ResizeObserver(entries => {
+        for (const entry of entries) {
+          if (entry.target === container) {
+            updateMapCoordinates();
+          }
+        }
+      });
+
+      // Start observing the container
+      resizeObserver.observe(container);
+
+      // Initial update
+      document.addEventListener("DOMContentLoaded", updateMapCoordinates);
+    </script>
   </body>
 </html>

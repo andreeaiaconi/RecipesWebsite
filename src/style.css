@@ -50,16 +50,16 @@ h1 {
 }
 @media screen and (max-width: 950px) {
   .mains-page,
-  .bakes-page {
+  .bakes-page,
+  .home-page {
     margin: clamp(15px, 3vw, 20px); /* Makes margin resize gradually */
     transition: margin 0.4s ease-in-out;
   }
 }
 /* ========== NAVIGATION STYLES ========== */
-.index-page__header {
-  padding-top: 10vh;
-}
-.nav {
+
+.nav,
+.index-page__nav {
   display: flex;
   justify-content: space-between;
   align-items: center; /* This helps vertically center all elements */
@@ -68,6 +68,7 @@ h1 {
   margin: 0 auto; /* Centers the nav if max-width is hit */
   padding: 0 20px; /* Replaced margin with padding for better edge behavior */
 }
+
 .nav__logo {
   height: 90px; /* Adjust this value to your needs */
   display: flex;
@@ -77,24 +78,21 @@ h1 {
   max-height: 100%;
   filter: drop-shadow(0px 0px 2px rgb(184, 193, 202));
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 950px) {
   .nav__logo img {
     max-height: 80%;
     padding-bottom: 10px;
   }
 }
-.nav__menu ul {
-  position: relative; /*new*/
-  right: 60px; /*new*/
-  margin: 10px; /*new*/
-  /* margin: 10px 60px; */
+.nav__menu ul,
+.index-page__nav-menu ul {
   padding-top: 15px;
   font-size: 22px;
-  /* font-family: "Snell Roundhand", cursive; */
   font-style: italic;
   display: flex;
 }
-.nav__menu-item {
+.nav__menu-item,
+.index-page__nav__menu-item {
   list-style: none; /* to remove bulletpoints*/
 }
 /*  targeting the link element */
@@ -104,8 +102,15 @@ h1 {
   padding: 1rem;
   display: block; /* takes up all the width given to it*/
 }
+.index-page__nav__menu-link {
+  text-decoration: none; /* to remove the underlining*/
+  color: #6783a2;
+  padding: 1rem;
+  display: block; /* takes up all the width given to it*/
+}
 
-.nav__menu-link:hover {
+.nav__menu-link:hover,
+.index-page__nav__menu-link:hover {
   background-color: rgba(135, 139, 124, 0.2);
 }
 .nav__hamburger {
@@ -115,8 +120,20 @@ h1 {
   flex-direction: column;
   justify-content: space-around;
   position: absolute;
-  top: 3rem;
+  top: 3.5rem;
   right: 2rem;
+  cursor: pointer;
+}
+.index-page__nav-hamburger {
+  width: 1.875rem;
+  height: 1.313rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 6.5rem;
+  right: 2rem;
+  cursor: pointer;
 }
 
 .nav__hamburger-line {
@@ -127,49 +144,80 @@ h1 {
   transition: all ease-in-out 0.2s;
 }
 
+.index-page_nav__hamburger-line {
+  height: 0.188rem;
+  width: 100%;
+  background-color: #999bb8;
+  border-radius: 0.7;
+  transition: all ease-in-out 0.2s;
+}
+
 @media screen and (max-width: 820px) {
-  .nav__hamburger {
+  .nav__hamburger,
+  .index-page__nav-hamburger {
     display: flex;
   }
   .nav__menu {
     position: absolute;
     display: flex;
     align-items: center;
-    background-color: rgba(135, 139, 124, 0.2);
-    top: -16rem; /* this makes the links be up above the page so when 
-    button is clicked they come down and are visible again */
+    justify-content: center;
+    background-color: rgba(135, 139, 124, 0.7);
+    top: -16rem;
     width: 100%;
     transition: all ease-in-out 0.4s;
-  }
-  .nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .nav__menu ul {
-    flex-direction: column;
-    width: 100%;
-    padding: 3rem 0 0.6rem; /* top, right&left, bottom */
-  }
-  .nav__menu-link {
-    text-align: end;
-    padding-right: 150px;
-  }
-  .nav__menu {
-    z-index: -1; /* so the index goes under the logo and hamburger */
-  }
-  .nav__menu.active {
-    top: 0;
-  }
-  .nav__hamburger.active :nth-child(1) {
-    transform: rotate(45deg) translate(0.45rem, 0.1875rem);
+    z-index: 3;
   }
 
-  .nav__hamburger.active :nth-child(2) {
+  .index-page__nav-menu {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(252 250 230);
+    top: -16rem;
+    width: 100%;
+    transition: all ease-in-out 0.4s;
+    z-index: 3;
+  }
+  .nav__menu.active,
+  .index-page__nav-menu.active {
+    top: 0;
+  }
+  .nav,
+  .index-page__nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav__menu ul,
+  .index-page__nav-menu ul {
+    flex-direction: column;
+    width: 100%;
+    padding: 3rem 0 0.6rem;
+    right: 0; /* Remove the right offset for mobile */
+    margin: 0 7rem;
+  }
+  .nav__menu-link,
+  .index-page__nav__menu-link {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .nav__hamburger.active :nth-child(1),
+  .index-page__nav-hamburger.active :nth-child(1) {
+    transform: rotate(45deg) translate(0.45rem, 0.1875rem);
+    z-index: 4;
+  }
+
+  .nav__hamburger.active :nth-child(2),
+  .index-page__nav-hamburger.active :nth-child(2) {
     opacity: 0;
   }
 
-  .nav__hamburger.active :nth-child(3) {
+  .nav__hamburger.active :nth-child(3),
+  .index-page__nav-hamburger.active :nth-child(3) {
     transform: rotate(-45deg) translate(0.45rem, -0.1875rem);
+    z-index: 4;
   }
 }
 
@@ -183,22 +231,8 @@ h1 {
   align-items: center;
 }
 
-
-.main-section__phrase {
-  font-size: 30px;
-  color: #ffffff;
-  /* font-family: "Snell Roundhand", cursive; */
-  font-weight: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  /*    additionally, given the lid taking up space, u can add some padding top */
-}
-
 /* ========== RECIPE BOX STYLES ========== */
 .recipe-box {
-  min-height: 90%;
   justify-content: center;
   position: relative; /* Make this the positioning context for the lid */
 }
@@ -213,6 +247,7 @@ h1 {
   overflow: hidden;
   padding: 0 2 px; /* so it goes a little bit bigger than the box */
   z-index: 7; /* Ensures the lid goes on top of the box not under it */
+  transition: transform ease-in-out 0.3s;
 }
 .recipe-box:hover .recipe-box__lid {
   top: -120px; /* Moves the lid up when hovering */
@@ -265,6 +300,87 @@ h1 {
   left: 0;
   margin-left: 4px;
   grid-template-columns: repeat(12, 1fr);
+}
+@media screen and (max-width: 1450px) and (min-width: 1071px) {
+  .recipe-box__lid {
+    width: 40vw; /* Adjusts width for mid-sized screens */
+    height: 100px; /* Slightly smaller than full-size but larger than mobile */
+  }
+
+  .recipe-box__container {
+    width: 40vw;
+    height: 350px; /* Reducing height so it's not too close to the bottom */
+  }
+
+  .recipe-box:hover .recipe-box__lid {
+    top: -100px; /* Less lift to match the new height */
+    transform: rotateZ(6deg); /* Moderate rotation */
+    left: 8px;
+  }
+
+  .overlay-text {
+    font-size: 18px; /* Keep text readable */
+  }
+}
+@media screen and (max-width: 1070px) {
+  .recipe-box__lid {
+    width: 55vw; /* Adjusts width for mid-sized screens */
+    height: 100px; /* Slightly smaller than full-size but larger than mobile */
+  }
+
+  .recipe-box__container {
+    width: 55vw;
+    height: 350px; /* Reducing height so it's not too close to the bottom */
+  }
+
+  .recipe-box:hover .recipe-box__lid {
+    top: -100px; /* Less lift to match the new height */
+    transform: rotateZ(6deg); /* Moderate rotation */
+    left: 8px;
+  }
+
+  .overlay-text {
+    font-size: 18px; /* Keep text readable */
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .recipe-box__lid {
+    width: 90vw; /* Use viewport width instead of fixed pixels */
+    height: 80px; /* Slightly smaller height for mobile */
+  }
+
+  .recipe-box__container {
+    width: 90vw;
+    height: 380px; /* Adjusted height to maintain proportion */
+  }
+
+  .recipe-box:hover .recipe-box__lid {
+    top: -75px; /* Adjusted for smaller lid height */
+    transform: rotateZ(5deg); /* Slightly less rotation on mobile */
+    left: 5px;
+  }
+
+  .overlay-text {
+    font-size: 16px; /* Smaller font size for mobile */
+  }
+}
+
+/* For even smaller screens */
+@media screen and (max-width: 500px) {
+  .recipe-box__lid {
+    width: 90vw;
+    height: 70px;
+  }
+
+  .recipe-box__container {
+    width: 90vw;
+    height: 350px;
+  }
+
+  .overlay-text {
+    font-size: 14px;
+  }
 }
 
 /* ========== DIVIDER STYLES ========== */
@@ -477,4 +593,53 @@ area {
   background: rgb(192 188 142);
   background-image: url(image/grain.png);
   border-radius: 7px;
+}
+
+.index-page__header {
+  padding-top: 5rem;
+}
+
+@media screen and (max-width: 700px) {
+  .index-page__header {
+    padding: 3rem 0 2rem;
+  }
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+.modal {
+  background-color: rgba(238, 20, 20, 0.5);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.open {
+  opacity: 1;
+  z-index: 999;
+}
+
+.modal-inner {
+  background-color: aqua;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(62, 62, 62, 0.5);
+  padding: 15px 25 px;
+  text-align: center;
+  width: 380px;
+}
+
+.modal-inner p {
+  line-height: 24px;
+  margin: 10px 0;
 }
