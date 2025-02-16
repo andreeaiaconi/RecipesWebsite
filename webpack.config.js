@@ -23,6 +23,10 @@ module.exports = env => {
       new HtmlWebpackPlugin({
         template: "./src/mains.html",
         filename: "mains.html"
+      }),
+      new HtmlWebpackPlugin({
+        template: "./src/sides.html",
+        filename: "sides.html"
       })
     ],
     module: {
