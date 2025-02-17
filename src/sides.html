@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sides Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="sides-page">
+    <header class="sides-page__header">
+      <div id="navbar-placeholder"></div>
+      <script>
+        fetch("navbar.html")
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          });
+      </script>
+    </header>
+    <h1 class="sides-page__title">Side Dishes</h1>
+    <section class="hero">
+      <img src="image/heroimage-sides3.jpeg" alt="Hero Image" />
+    </section>
+    <main>
+      <section class="container">
+        <div class="search">
+          <input type="text" placeholder="Caută Rețeta..." />
+          <button class="btn">&#x1F50D;</button>
+        </div>
+        <div id="recipe-container">
+          <div class="recipe" data-url="tortmeile.html">
+            <div class="recipe-image">
+              <img src="image/recipeimages/sidesimages/Quesadilla-cu-pui-si-legume.jpg" alt="Quesadilla-cu-pui-si-legume" />
+            </div>
+            <div class="recipe-title">Quesadilla cu pui si legume</div>
+          </div>
+          <div class="recipe" data-url="bakesRecipes/torttropicbounty.html">
+            <div class="recipe-image">
+              <img src="image/recipeimages/sidesimages/Hummus-de-linte-si-cartofi-dulci.jpg" alt="Hummus-de-linte-si-cartofi-dulci" />
+            </div>
+            <div class="recipe-title">Hummus de linte si cartofi dulci</div>
+          </div>
+          <div class="recipe" data-url="bakesRecipes/tortmenta-capsuni.html">
+            <div class="recipe-image">
+              <img src="image/recipeimages/sidesimages/Salata-Tort-Aperitiv-Nr1.jpg" alt="Salata-Tort-Aperitiv-Nr1" />
+            </div>
+            <div class="recipe-title">Salata Tort Aperitiv Nr1</div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      document.querySelectorAll(".recipe").forEach(recipe => {
+        recipe.addEventListener("click", function () {
+          window.location.href = this.getAttribute("data-url");
+        });
+      });
+    </script>
+  </body>
+</html>
