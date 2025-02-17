@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vegan Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="vegan-page">
+    <header class="vegan-page__header">
+      <div id="navbar-placeholder"></div>
+      <script>
+        fetch("navbar.html")
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          });
+      </script>
+    </header>
+    <h1 class="vegan-page__title">Vegan Dishes</h1>
+    <section class="hero">
+      <img src="image/heroimage-vegan3.jpeg" alt="Hero Image" />
+    </section>
+    <main>
+      <section class="container">
+        <div class="search">
+          <input type="text" placeholder="Caută Rețeta..." />
+          <button class="btn">&#x1F50D;</button>
+        </div>
+        <div id="recipe-container">
+          <div class="recipe" data-url="tortmeile.html">
+            <div class="recipe-image">
+              <img
+                src="image/recipeimages/veganimages/Salata Orientala de Post2.png"
+                alt="Quesadilla-cu-pui-si-legume"
+              />
+            </div>
+            <div class="recipe-title">Quesadilla cu pui si legume</div>
+          </div>
+          <div class="recipe" data-url="bakesRecipes/torttropicbounty.html">
+            <div class="recipe-image">
+              <img
+                src="image/recipeimages/sidesimages/Hummus-de-linte-si-cartofi-dulci.jpg"
+                alt="Hummus-de-linte-si-cartofi-dulci"
+              />
+            </div>
+            <div class="recipe-title">Hummus de linte si cartofi dulci</div>
+          </div>
+          <div class="recipe" data-url="bakesRecipes/tortmenta-capsuni.html">
+            <div class="recipe-image">
+              <img src="image/recipeimages/veganimages/Supă cremă de dovlecei sau zucchini.png" alt="Salata-Tort-Aperitiv-Nr1" />
+            </div>
+            <div class="recipe-title">Salata Tort Aperitiv Nr1</div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      document.querySelectorAll(".recipe").forEach(recipe => {
+        recipe.addEventListener("click", function () {
+          window.location.href = this.getAttribute("data-url");
+        });
+      });
+    </script>
+  </body>
+</html>
