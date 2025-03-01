@@ -11,7 +11,6 @@
     "build": "webpack --mode production",
     "start": "webpack serve --open",
     "demo": "set PORT=8080 && serve docs"
-
   },
   "repository": {
     "type": "git",
@@ -28,9 +27,13 @@
     "css-loader": "^7.1.2",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
     "style-loader": "^4.0.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0"
   }
 }
