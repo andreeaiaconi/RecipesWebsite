@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index Page</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body class="home-page">
     <header class="index-page__header">
@@ -18,14 +19,28 @@
         </a>
         <div class="index-page__nav-menu">
           <ul>
-            <li class="index-page__nav__menu-item"><a href="index.html" class="index-page__nav__menu-link">Home</a></li>
-            <li class="index-page__nav__menu-item"><a href="#about" class="index-page__nav__menu-link">About</a></li>
             <li class="index-page__nav__menu-item">
-              <a href="#contact" class="index-page__nav__menu-link">Contact</a>
+              <a href="index.html" class="index-page__nav__menu-link">Home</a>
+            </li>
+            <li class="index-page__nav__menu-item">
+              <a href="#" class="index-page__nav__menu-link" onclick="showPopup('About')">About</a>
+            </li>
+
+            <li class="index-page__nav__menu-item">
+              <a href="#" class="index-page__nav__menu-link" onclick="showPopup('Contact')">Contact</a>
             </li>
           </ul>
         </div>
       </nav>
+      <div id="popup-overlay" class="popup-overlay" onclick="closePopup()"></div>
+
+      <!-- Popup Container -->
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <span class="close" onclick="closePopup()">&times;</span>
+          <p id="popup-text"></p>
+        </div>
+      </div>
     </header>
     <section class="main-section">
       <div></div>
@@ -34,7 +49,9 @@
           <img src="image/lidimage2.jpeg" alt="Lid image" />
           <div class="overlay-text">Lift the lid and step inside Ina's kitchen</div>
         </div>
-        <div class="recipe-box__container"></div>
+        <div class="recipe-box__container">
+          <img src="image/recipebox2.png" alt="Recipe Box image" />
+        </div>
         <div class="recipe-box__divider">
           <div class="recipe-box__divider-item recipe-box__divider-item--bakes">
             <img src="image/dividersimages/bakesimage.png" alt="bakes" usemap="#bakesdivider" />
@@ -56,55 +73,54 @@
           <area shape="rect" coords="394.5,0,524,50" alt="Vegan Map" href="vegan.html" />
         </map>
       </div>
-      <div></div>
     </section>
-
-    <!-- Add the script here, right before closing body tag -->
     <script>
-      // Get the container and map elements
-      const container = document.querySelector(".recipe-box__divider");
-      const imageMap = document.querySelector('map[name="bakesdivider"]');
-      const areas = imageMap.getElementsByTagName("area");
+      // Wait for the entire page to load
+      window.onload = function () {
+        // Get the container and map elements
+        const container = document.querySelector(".recipe-box__divider");
+        const imageMap = document.querySelector('map[name="bakesdivider"]');
+        const areas = imageMap.getElementsByTagName("area");
 
-      // Function to update coordinates
-      function updateMapCoordinates() {
-        // Get current container dimensions
-        const containerWidth = container.offsetWidth;
-        const containerHeight = container.offsetHeight;
+        // Function to update coordinates
+        function updateMapCoordinates() {
+          // Get current container dimensions
+          const containerWidth = container.offsetWidth;
+          const containerHeight = container.offsetHeight;
 
-        // Calculate section widths (divide total width by 4 for each section)
-        const sectionWidth = containerWidth / 4;
+          // Calculate section widths (divide total width by 4 for each section)
+          const sectionWidth = containerWidth / 4;
 
-        // Update coordinates for each area
-        // Format: x1,y1,x2,y2
-        const newCoordinates = [
-          `0,0,${sectionWidth},${containerHeight}`, // Bakes
-          `${sectionWidth},0,${sectionWidth * 2},${containerHeight}`, // Mains
-          `${sectionWidth * 2},0,${sectionWidth * 3},${containerHeight}`, // Sides
-          `${sectionWidth * 3},0,${containerWidth},${containerHeight}` // Vegan
-        ];
+          // Update coordinates for each area
+          // Format: x1,y1,x2,y2
+          const newCoordinates = [
+            `0,0,${sectionWidth},${containerHeight}`, // Bakes
+            `${sectionWidth},0,${sectionWidth * 2},${containerHeight}`, // Mains
+            `${sectionWidth * 2},0,${sectionWidth * 3},${containerHeight}`, // Sides
+            `${sectionWidth * 3},0,${containerWidth},${containerHeight}` // Vegan
+          ];
 
-        // Update each area's coordinates
-        for (let i = 0; i < areas.length; i++) {
-          areas[i].coords = newCoordinates[i];
-        }
-        
-      }
-
-      // Create a ResizeObserver to watch the container
-      const resizeObserver = new ResizeObserver(entries => {
-        for (const entry of entries) {
-          if (entry.target === container) {
-            updateMapCoordinates();
+          // Update each area's coordinates
+          for (let i = 0; i < areas.length; i++) {
+            areas[i].coords = newCoordinates[i];
           }
         }
-      });
 
-      // Start observing the container
-      resizeObserver.observe(container);
+        // Create a ResizeObserver to watch the container
+        const resizeObserver = new ResizeObserver(entries => {
+          for (const entry of entries) {
+            if (entry.target === container) {
+              updateMapCoordinates();
+            }
+          }
+        });
 
-      // Initial update
-      document.addEventListener("DOMContentLoaded", updateMapCoordinates);
+        // Start observing the container
+        resizeObserver.observe(container);
+
+        // Initial update
+        updateMapCoordinates();
+      };
     </script>
   </body>
 </html>

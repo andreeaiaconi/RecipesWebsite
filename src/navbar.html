@@ -1,18 +1,48 @@
-<!-- navbar.html -->
-<nav class="nav">
-      <a href="#" class="nav__hamburger">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NavBar Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation Menu -->
+    <nav class="nav">
+      <div class="nav__hamburger">
         <span class="nav__hamburger-line"></span>
         <span class="nav__hamburger-line"></span>
         <span class="nav__hamburger-line"></span>
-      </a>
-      <div class="nav__logo">
-        <img id="navLogo" src="image/logo.png" alt="Site Logo" />
       </div>
+      <a href="index.html" class="nav__logo">
+        <img id="navLogo" src="image/logo.png" alt="Site Logo" />
+      </a>
       <div class="nav__menu">
         <ul>
-          <li class="nav__menu-item"><a href="index.html" class="nav__menu-link">Home</a></li>
-          <li class="nav__menu-item"><a href="#about" class="nav__menu-link">About</a></li>
-          <li class="nav__menu-item"><a href="#contact" class="nav__menu-link">Contact</a></li>
+          <li class="nav__menu-item">
+            <a href="index.html" class="nav__menu-link">Home</a>
+          </li>
+
+          <li class="nav__menu-item">
+            <a href="#" class="nav__menu-link" onclick="showPopup('About')">About</a>
+          </li>
+
+          <li class="nav__menu-item">
+            <a href="#" class="nav__menu-link" onclick="showPopup('Contact')">Contact</a>
+          </li>
         </ul>
       </div>
     </nav>
+
+    <!-- Dark Background Overlay -->
+    <div id="popup-overlay" class="popup-overlay" onclick="closePopup()"></div>
+
+    <!-- Popup Container -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <p id="popup-text"></p>
+      </div>
+    </div>
+  </body>
+</html>

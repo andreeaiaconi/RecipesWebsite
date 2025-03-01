@@ -27,40 +27,14 @@
           <input type="text" placeholder="Caută Rețeta..." />
           <button class="btn">&#x1F50D;</button>
         </div>
+        <!-- Recipe container where recipes will be dynamically inserted -->
         <div id="recipe-container">
-          <div class="recipe" data-url="tortmeile.html">
-            <div class="recipe-image">
-              <img
-                src="image/recipeimages/veganimages/Salata Orientala de Post2.png"
-                alt="Quesadilla-cu-pui-si-legume"
-              />
-            </div>
-            <div class="recipe-title">Quesadilla cu pui si legume</div>
-          </div>
-          <div class="recipe" data-url="bakesRecipes/torttropicbounty.html">
-            <div class="recipe-image">
-              <img
-                src="image/recipeimages/sidesimages/Hummus-de-linte-si-cartofi-dulci.jpg"
-                alt="Hummus-de-linte-si-cartofi-dulci"
-              />
-            </div>
-            <div class="recipe-title">Hummus de linte si cartofi dulci</div>
-          </div>
-          <div class="recipe" data-url="bakesRecipes/tortmenta-capsuni.html">
-            <div class="recipe-image">
-              <img src="image/recipeimages/veganimages/Supă cremă de dovlecei sau zucchini.png" alt="Salata-Tort-Aperitiv-Nr1" />
-            </div>
-            <div class="recipe-title">Salata Tort Aperitiv Nr1</div>
-          </div>
+          <!-- Recipes will be inserted here by JavaScript -->
         </div>
       </section>
     </main>
-    <script>
-      document.querySelectorAll(".recipe").forEach(recipe => {
-        recipe.addEventListener("click", function () {
-          window.location.href = this.getAttribute("data-url");
-        });
-      });
-    </script>
+
+    <!-- Link to your JavaScript file -->
+    <script src="script.js" type="module"></script>
   </body>
 </html>
